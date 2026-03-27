@@ -11,8 +11,7 @@ public class player : MonoBehaviour
     [SerializeField] float flyingSpeed = 12f;
     [SerializeField] float climbingSpeed = 2f;
     [SerializeField] float mass = 1f;
-    //[SerializeField] float jumpPower = 7f;
-    //[SerializeField] float gravity = 10f;
+    [SerializeField] float jumpPower = 7f;
     
     public Transform cameraTransform;
 
@@ -25,6 +24,7 @@ public class player : MonoBehaviour
     public enum State
     {
 	Walking,
+	Spectating,
 	Climbing
     }
 
@@ -44,6 +44,10 @@ public class player : MonoBehaviour
 		break;
 	    case State.Climbing:
 		UpdateMovementClimbing();
+		UpdateLook();
+		break;
+	    case State.Spectating:
+		UpdateMovementFlying();
 		UpdateLook();
 		break;
 	}
@@ -66,15 +70,37 @@ public class player : MonoBehaviour
 	input = Vector3.ClampMagnitude(input, 1f);
 	
 	controller.Move((input * walkingSpeed + velocity) * Time.deltaTime);
+	
+	//Jumping
+	if (Input.GetButtonDown("Jump") && controller.isGrounded)
+	{
+	    velocity.y += jumpPower;
+	}
+
     }
 
     void UpdateGravity()
     {
-	var gravity = Physics.gravity * mass * Time.deltaTime;
-	velocity.y = controller.isGrounded ? -1f : velocity.y + gravity.y;
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -1f; // small negative value to keep grounded
+        }
+        else
+        {
+            var gravity = Physics.gravity * mass * Time.deltaTime;
+            velocity.y += gravity.y;
+        }
     }
 
-
+    void UpdateMovementFlying()
+    {
+ 	//var input = GetMovementInput(flyingSpeed, false); 
+     
+	//var factor = acceleration * Time.deltaTime;
+	//velocity = Vector3.Lerp(velocity, input, factor);
+	
+	//controller.Move(velocity * Time.deltaTime);
+    }
 
     void UpdateMovementClimbing()
     {
