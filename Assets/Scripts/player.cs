@@ -40,6 +40,7 @@ public class player : MonoBehaviour
 	    case State.Walking:
 		UpdateMovement();
 		UpdateLook();
+		UpdateGravity();
 		break;
 	    case State.Climbing:
 		UpdateMovementClimbing();
@@ -64,9 +65,16 @@ public class player : MonoBehaviour
 	input += transform.right * x;
 	input = Vector3.ClampMagnitude(input, 1f);
 	
-	controller.Move(input * walkingSpeed * Time.deltaTime);
-
+	controller.Move((input * walkingSpeed + velocity) * Time.deltaTime);
     }
+
+    void UpdateGravity()
+    {
+	var gravity = Physics.gravity * mass * Time.deltaTime;
+	velocity.y = controller.isGrounded ? -1f : velocity.y + gravity.y;
+    }
+
+
 
     void UpdateMovementClimbing()
     {

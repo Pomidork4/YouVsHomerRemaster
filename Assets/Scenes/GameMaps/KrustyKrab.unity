@@ -3734,10 +3734,15 @@ PrefabInstance:
       propertyPath: field of view
       value: 60.000004
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5262446288643758761, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
+    - {fileID: 5189468780960772257, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6730851833590130066, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1551063337}
     - targetCorrespondingSourceObject: {fileID: 6987666356635019614, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1251689625}
@@ -3953,6 +3958,11 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!4 &1251689626 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6440597647644162567, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
+  m_PrefabInstance: {fileID: 1131373613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1281572639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2969809992543032756, guid: 7130351b4db01c74693d7dcc1d0d09b4, type: 3}
@@ -4643,6 +4653,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533682891}
   m_Mesh: {fileID: -1671564191954039833, guid: f5966d59b994a8845b5e59d5384f63ca, type: 3}
+--- !u!1 &1551063336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6730851833590130066, guid: 73e825cb9091d514eae1fc6e4214188b, type: 3}
+  m_PrefabInstance: {fileID: 1131373613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1551063337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551063336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5bfd8ff746486479b6f69829cbd374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::player
+  mouseSensitivity: 3
+  acceleration: 10
+  walkingSpeed: 6
+  flyingSpeed: 12
+  climbingSpeed: 2
+  mass: 1
+  cameraTransform: {fileID: 1251689626}
+  state: 0
 --- !u!1 &1571954977
 GameObject:
   m_ObjectHideFlags: 0
